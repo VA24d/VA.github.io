@@ -1,0 +1,67 @@
+:default body {
+    background-color: azure;
+    /* Light background */
+    color: rgb(6, 22, 38);
+    /* Dark text */
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: row; /* Horizontal layout */
+    scroll-snap-type: x mandatory; /* Enable horizontal scrolling */
+    scroll-snap-type: mandatory;
+}
+
+.section {
+    width: 100vw; /* Full width of the viewport */
+    height: 100vh; /* Full height of the viewport */
+    flex-shrink: 0; /* Prevent sections from shrinking */
+    scroll-snap-align: start; /* Snap to the start of each section */
+    
+}
+
+.point {
+    /* Common styles for points */
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+/* ####Custom Styles########## */
+body.dark_mode {
+    background-color: rgb(6, 22, 38);
+    color: azure;
+}
+
+
+.point.dark-mode {
+    background-color: #ccc;
+    /* Light color for points */
+}
+
+
+
+
+footer {}
+
+
+
+/* ####User Defined Styles########## */
+.NavFlex {
+    content: flex;
+    /* <!-- 1 1 auto;--> */
+}
+
+.NavList {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.FooterBar {}

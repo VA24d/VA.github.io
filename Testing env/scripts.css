@@ -1,0 +1,33 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.slide-container {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory; /* Enable horizontal scrolling and snapping */
+    -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
+}
+
+.slide {
+    flex: 0 0 100%;
+    height: 100vh; /* Take up the entire viewport height */
+    scroll-snap-align: start; /* Snap each slide to the start of the container */
+}
+
+.slide:nth-child(1) {
+    background-color: #FF5733; /* Orange */
+}
+
+.slide:nth-child(2) {
+    background-color: #C70039; /* Red */
+}
+
+.slide:nth-child(3) {
+    background-color: #900C3F; /* Maroon */
+}
+/* Add more styles for additional slides */
