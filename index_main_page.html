@@ -8,26 +8,92 @@
     <title>Your GitHub Pages Title</title>
 
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
 </head>
 
 <body>
-    <script src="script.js"></script>
+
+
+
+
+    <!-- remember to uncomment -->
+    <!-- <div id="loadingFrameContainer" style="display: none;">
+        <iframe id="loadingFrame" src="loading.html" frameborder="0"
+            style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000;"></iframe>
+    </div> -->
+
+    <nav class="navbar" id="navbar">
+        <ul>
+            <li><a href="#Home">Home</a></li>
+            <li><a href="#AboutMe">About Me</a></li>
+            <li><a href="#Education">Education</a></li>
+            <li><a href="#Achivements">Achievements</a></li>
+            <li><a href="./blog.html">Blog</a></li>
+            <li><a href="#ActiveProjects">Active Projects</a></li>
+            <li><a href="#MyHobbies">My Hobbies</a></li>
+
+            <label>
+                <span class="label">Color Theme</span>
+                <input id="id-switch-1" type="checkbox" role="switch">
+                <span class="state">
+                    <span class="container">
+                        <span class="position"></span>
+                    </span>
+                    <span class="on" aria-hidden="true">Dark</span>
+                    <span class="off" aria-hidden="true">Light</span>
+                </span>
+            </label>
+            <!-- Add more sections as needed -->
+        </ul>
+    </nav>
+
+    <div class="social-button">
+        <button class="expand-button"><img src="/Icons/link.png" alt="Social Media"></button>
+        <div class="social-links">
+            <a href="#" class="social-link"><img src="/Icons/facebook.png" alt="Facebook"></a>
+            <a href="#" class="social-link"><img src="/Icons/instagram.png" alt="Instagram"></a>
+            <a href="#" class="social-link"><img src="/Icons/linkedin.png" alt="Linked In"></a>
+            <a href="#" class="social-link"><img src="/Icons/twitter.png" alt="Twitter"></a>
+            <a href="#" class="social-link"><img src="/Icons/mail.png" alt="Mail"></a>
+        </div>
+    </div>
 
     <div class="container">
-        <section class="section" id="Home">Section 1</section>
-        <section class="section" id="AboutMe">Section 2</section>
-        <section class="section" id="Education">Section 3</section>
+        <section class="section" id="Home">
+            <div class="viewport_content">
+                <!-- Content goes here -->
+                <p></p>
+            </div>
+        </section>
+        <section class="section" id="AboutMe">
+            <div class="viewport_content">
+                <!-- Content goes here -->
+                <p>This is some content inside the box.</p>
+            </div>
+        </section>
+        <section class="section" id="Education"><div class="viewport_content">
+            <!-- Content goes here -->
+            <p>This is some content inside the box.</p>
+        </div>
+    </section>
         <section class="section" id="Achivements">Section 4</section>
-        <section class="section" id="Blog">Section 5</section>
         <section class="section" id="ActiveProjects">Section 7</section>
-        <section class="section" id="MyHobby">Section 6</section>
-
+        <section class="section" id="MyHobbies">Section 6</section>
         <!-- Add more sections as needed -->
     </div>
 
     <!-- You can add more HTML content here as needed -->
 
+    <script src="script.js"></script>
+    <script>
+        // Show loading animation
+        document.getElementById('loadingFrameContainer').style.display = 'block';
+
+        // Simulate loading process (replace this with your actual loading process)
+        setTimeout(function () {
+            // Hide loading animation after 3 seconds (replace 3000 with your desired loading time)
+            document.getElementById('loadingFrameContainer').style.display = 'none';
+        }, 4000);
+    </script>
 </body>
 
 </html>

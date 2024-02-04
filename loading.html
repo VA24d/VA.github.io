@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading...</title>
+    <style>
+        body.light {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        body.dark {
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Center horizontally */
+            justify-content: center;
+            /* Center vertically */
+            min-height: 100vh;
+            /* Full height of viewport */
+            gap: 0;
+            /* Reduce space between flex items to zero */
+        }
+
+        .loader {
+            border: 10px solid transparent;
+            border-top-color: #3498db;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            animation: spin 1.5s linear infinite;
+        }
+
+        .loader.dark {
+            border-top-color: #ffcd02;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        fieldset {
+            width: 22em;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin: 0.5em auto;
+            padding: 4px 4px 6px 6px;
+            border: 0 solid rgb(80, 79, 79);
+            border-radius: 5px;
+            width: 16em;
+            text-align: left;
+        }
+
+        label .label {
+            display: inline-block;
+            width: 9em;
+            user-select: none;
+        }
+
+        label input[role="switch"] {
+            opacity: 0;
+        }
+
+        label input[role="switch"]~.state {
+            display: inline-block;
+            user-select: none;
+        }
+
+        label input[role="switch"]~.state>.container {
+            position: relative;
+            top: 2px;
+            display: inline-block;
+            border: 2px solid black;
+            width: 40px;
+            height: 20px;
+            border-radius: 11px;
+        }
+
+        label input[role="switch"]~.state>.container>.position {
+            position: relative;
+            top: 1px;
+            left: 2px;
+            display: inline-block;
+            border: 2px solid black;
+            border-radius: 9px;
+            width: 14px;
+            height: 14px;
+            background: black;
+            opacity: 0.6;
+        }
+
+        label input[role="switch"]:not(:checked)~.state span.on {
+            display: none;
+        }
+
+        label input[role="switch"]:checked~.state>span.off {
+            display: none;
+        }
+
+        label input[role="switch"]:checked~.state>.container>.position {
+            left: 20px;
+            border-color: lightblue;
+            background: lightblue;
+            opacity: 1;
+        }
+
+        label.focus,
+        label:hover {
+            padding: 2px 2px 4px 4px;
+            border-width: 2px;
+            outline: none;
+            background-color: rgb(115, 115, 115);
+            cursor: pointer;
+        }
+
+        label.focus span.container,
+        label:hover span.container {
+            background-color: #000000;
+        }
+
+        .loading-text {
+            font-size: 70px;
+            padding-bottom: 10px;
+        }
+
+        #typewriter {
+            font-size: 24px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            width: fit-content;
+            margin: auto;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body class="light">
+    <div class="content">
+        <br><br>
+        <br><br>
+        <br><br>
+        <br><br>
+        <br><br>
+        <br><br>
+        <br><br>
+        <br><br>
+        <br><br>
+        <br><br>
+        <br><br>
+
+        <div class="loader"></div>
+        <p class="loading-text">Loading...</p>
+        <div id="typewriter"></div>
+        <fieldset>
+            <legend>Theme preference</legend>
+            <label>
+                <span class="label">Color Theme</span>
+                <input id="id-switch-1" type="checkbox" role="switch">
+                <span class="state">
+                    <span class="container">
+                        <span class="position"></span>
+                    </span>
+                    <span class="on" aria-hidden="true">Dark</span>
+                    <span class="off" aria-hidden="true">Light</span>
+                </span>
+            </label>
+        </fieldset>
+    </div>
+    <script>
+        document.getElementById("id-switch-1").addEventListener("change", function () {
+            if (this.checked) {
+                setTheme("dark");
+            } else {
+                setTheme("light");
+            }
+        });
+        function setTheme(themeName) {
+            document.body.className = themeName;
+            document.cookie = "theme=" + themeName;
+        }
+        window.onload = function () {
+            var theme = getCookie("theme");
+            if (theme) {
+                document.body.className = theme;
+                if (theme === "dark") {
+                    document.getElementById("id-switch-1").checked = true;
+                }
+            }
+        }
+        function getCookie(name) {
+            var value = "; " + document.cookie;
+            var parts = value.split("; " + name + "=");
+            if (parts.length == 2) return parts.pop().split(";").shift();
+        }
+        class CheckboxSwitch {
+            constructor(domNode) {
+                this.switchNode = domNode;
+                this.switchNode.addEventListener('focus', () => this.onFocus(event));
+                this.switchNode.addEventListener('blur', () => this.onBlur(event));
+            }
+            onFocus(event) {
+                event.currentTarget.parentNode.classList.add('focus');
+            }
+            onBlur(event) {
+                event.currentTarget.parentNode.classList.remove('focus');
+            }
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            const text = 'Use the navbar to navigate or scroll horizontally. \n Select theme to use on the webpage.';
+            const speed = 50;
+            let i = 0;
+            const typewriter = document.getElementById('typewriter');
+            function typeWriter() {
+                if (i < text.length) {
+                    if (text.charAt(i) === '\n') {
+                        typewriter.innerHTML += '<br>';
+                    } else {
+                        typewriter.innerHTML += text.charAt(i);
+                    }
+                    i++;
+                    setTimeout(typeWriter, speed);
+                }
+            }
+            typeWriter();
+        });
+        window.addEventListener('load', function () {
+            Array.from(
+                document.querySelectorAll('input[type=checkbox][role^=switch]')
+            ).forEach((element) => new CheckboxSwitch(element));
+        });
+    </script>
+</body>
+
+</html>
